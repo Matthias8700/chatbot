@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-void main() {
+void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await Future.delayed(
+    const Duration(seconds: 1),
+  );
+  FlutterNativeSplash.remove();
   runApp(const MyApp());
 }
 
@@ -13,12 +17,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'chatBot',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: Color.fromARGB(13, 168, 168, 142),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Center(child: Text('Yo AI Chat')),
+        ),
       ),
-      home: MyHomePage(title: 'MyChatbot'),
     );
   }
 }
